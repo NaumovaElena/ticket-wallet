@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+    <!-- подгрузка фавиконки на вкладку браузера -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+
+    <title>Ticket-Wallet</title>
+    <style>
+      .months {
+        background: linear-gradient(60deg, white, rgb(145, 145, 231));
+        color: rgb(74, 70, 71);
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .nav-link {
+        background-color: rgb(152, 192, 239);
+        color: rgb(69, 57, 62);
+        font-size: 1.5rem;
+        font-weight: bold;
+        height: 8rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-top: 3rem;
+      }
+      .button-save {
+        background-color: green;
+        color: aliceblue;
+        border-radius: 0.2rem;
+        border: rgb(31, 65, 19);
+        font-weight: bold;
+        height: 2rem;
+      }
+    </style>
+  </head>
+  <body style="background-color: rgb(178, 181, 182)">
+    <div class="container mt-4">
+      <div class="mb-3 text-center coll-md-12 material-symbols-outlined">
+        <h1 style="color: green; text-decoration-line: underline">
+          Коллекция электронных билетов
+         
+        </h1>
+      </div>
+      <div class="row">
+        <!-- Years start -->
+        <div class="col-3">
+          <div
+            class="mt-5 nav flex-column nav-pills"
+            id="v-pills-tab2"
+            role="tablist"
+            aria-orientation="vertical"
+          >
+            <a
+              class="nav-link"
+              id="2020"
+              data-toggle="pill"
+              href="#v-pills-year"
+              role="tab"
+              aria-controls="v-pills-2020"
+              aria-selected="false"
+              >2020</a
+            >
+
+            <a
+              class="nav-link"
+              id="2021"
+              data-toggle="pill"
+              href="#v-pills-year"
+              role="tab"
+              aria-controls="v-pills-2021"
+              aria-selected="false"
+              >2021</a
+            >
+            <a
+              class="nav-link"
+              id="2022"
+              data-toggle="pill"
+              href="#v-pills-year"
+              role="tab"
+              aria-controls="v-pills-2022"
+              aria-selected="false"
+              >2022</a
+            >
+            <a
+              class="nav-link"
+              id="2023"
+              data-toggle="pill"
+              href="#v-pills-year"
+              role="tab"
+              aria-controls="v-pills-2023"
+              aria-selected="false"
+              >2023</a
+            >
+          </div>
+        </div>
+
+        <!-- Years end -->
+
+        <div class="col-9">
+          <!-- Form start -->
+          <form
+            class="row event_form"
+            action="#/"
+            id="contactForm"
+            onsubmit="sendForm(this); return false;"
+          >
+            <div
+              class="mt-2 mb-3 col-md-12"
+              style="
+                width: 400px;
+                height: 400 px;
+                color: rgb(31, 65, 19);
+                text-align: center;
+                font-size: 2rem;
+              "
+            >
+              <img src="img/icon.png" alt="icon" />
+              Заполните данные о мероприятии
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="date"
+                class="form-control"
+                id="date"
+                name="date"
+                placeholder="Дата"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Дата'"
+                required
+              />
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="place"
+                name="place"
+                placeholder="Место"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Место'"
+                required
+              />
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="type"
+                name="type"
+                placeholder="Тип мероприятия"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Тип мероприятия'"
+                required
+              />
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Название"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Название'"
+                required
+              />
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="number"
+                class="form-control edit"
+                id="price"
+                name="price"
+                placeholder="Цена"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Цена'"
+              />
+            </div>
+            <div class="col-md-12 form-group">
+              <input type="file" class="form-control-file" id="file" />
+            </div>
+
+            <p id="info" style="color: red; padding-left: 1.5rem"></p>
+
+            <div class="col-md-12 form-group">
+              <button
+                type="submit"
+                value="submit"
+                class="mb-3 button button-save w-100"
+              >
+                Добавить мероприятие
+              </button>
+            </div>
+          </form>
+          <!-- Form end -->
+          <div class="p-0 col-md-12">
+            <button
+              onclick=""
+              type="submit"
+              value="submit"
+              class="mb-3 button button-showall w-100"
+            >
+              Показать полный список
+            </button>
+          </div>
+
+          <!-- Модальное окно start-->
+          <div
+            class="modal fade"
+            id="myModal"
+            data-backdrop="static"
+            data-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">
+                    Информация успешно загружена
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Модальное окно end-->
+
+          <!-- Months start-->
+          <div class="tab-content" id="v-pills-tabContent">
+            <div
+              class="tab-pane fade"
+              id="v-pills-year"
+              role="tabpanel"
+              aria-labelledby="v-pills-profile-tab"
+            >
+              <div class="nav-pills" role="tablist">
+                <div class="row row-cols-1 row-cols-md-3">
+                  <div class="mb-4 col">
+                    <div class="card h-100 months">
+                      <div class="card-body">
+                        <a
+                          class="nav-link-month"
+                          id="01"
+                          data-toggle="pill"
+                          href="#v-pills-month"
+                          role="tab"
+                          aria-controls="v-pills-january"
+                          aria-selected="false"
+                          >Январь</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4 col">
+                    <div class="card h-100 months">
+                      <div class="card-body">
+                        <a
+                          class="nav-link-month"
+                          id="02"
+                          data-toggle="pill"
+                          href="#v-pills-month"
+                          role="tab"
+                          aria-controls="v-pills-february"
+                          aria-selected="false"
+                          >Февраль</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4 col">
+                    <div class="card h-100 months">
+                      <div class="card-body">
+                        <a
+                          class="nav-link-month"
+                          id="03"
+                          data-toggle="pill"
+                          href="#v-pills-month"
+                          role="tab"
+                          aria-controls="v-pills-march"
+                          aria-selected="false"
+                          >Март</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4 col">
+                    <div class="card h-100 months">
+                      <div class="card-body">
+                        <a
+                          class="nav-link-month"
+                          id="4"
+                          data-toggle="pill"
+                          href="#v-pills-month"
+                          role="tab"
+                          aria-controls="v-pills-april"
+                          aria-selected="false"
+                          >Апрель</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4 col">
+                    <div class="card h-100 months">
+                      <div class="card-body">
+                        <a
+                          class="nav-link-month"
+                          id="5"
+                          data-toggle="pill"
+                          href="#v-pills-month"
+                          role="tab"
+                          aria-controls="v-pills-may"
+                          aria-selected="false"
+                          >Май</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4 col">
+                    <div class="card h-100 months">
+                      <div class="card-body">
+                        <a
+                          class="nav-link-month"
+                          id="6"
+                          data-toggle="pill"
+                          href="#v-pills-month"
+                          role="tab"
+                          aria-controls="v-pills-june"
+                          aria-selected="false"
+                          >Июнь</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4 col">
+                    <div class="card h-100 months">
+                      <div class="card-body">
+                        <a
+                          class="nav-link-month"
+                          id="7"
+                          data-toggle="pill"
+                          href="#v-pills-month"
+                          role="tab"
+                          aria-controls="v-pills-july"
+                          aria-selected="false"
+                          >Июль</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4 col">
+                    <div class="card h-100 months">
+                      <div class="card-body">
+                        <a
+                          class="nav-link-month"
+                          id="8"
+                          data-toggle="pill"
+                          href="#v-pills-month"
+                          role="tab"
+                          aria-controls="v-pills-august"
+                          aria-selected="false"
+                          >Август</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4 col">
+                    <div class="card h-100 months">
+                      <div class="card-body">
+                        <a
+                          class="nav-link-month"
+                          id="9"
+                          data-toggle="pill"
+                          href="#v-pills-month"
+                          role="tab"
+                          aria-controls="v-pills-september"
+                          aria-selected="false"
+                          >Сентябрь</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4 col">
+                    <div class="card h-100 months">
+                      <div class="card-body">
+                        <a
+                          class="nav-link-month"
+                          id="10"
+                          data-toggle="pill"
+                          href="#v-pills-month"
+                          role="tab"
+                          aria-controls="v-pills-october"
+                          aria-selected="false"
+                          >Октябрь</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4 col">
+                    <div class="card h-100 months">
+                      <div class="card-body">
+                        <a
+                          class="nav-link-month"
+                          id="11"
+                          data-toggle="pill"
+                          href="#v-pills-month"
+                          role="tab"
+                          aria-controls="v-pills-november"
+                          aria-selected="false"
+                          >Ноябрь</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4 col">
+                    <div class="card h-100 months">
+                      <div class="card-body">
+                        <a
+                          class="nav-link-month"
+                          id="12"
+                          data-toggle="pill"
+                          href="#v-pills-month"
+                          role="tab"
+                          aria-controls="v-pills-december"
+                          aria-selected="false"
+                          >Декабрь</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Months end-->
+
+            <!-- List of month start-->
+            <div
+              class="tab-pane fade"
+              id="v-pills-month"
+              role="tabpanel"
+              aria-labelledby="v-pills-profile-tab"
+            >
+              <div class="mb-3 text-center col-md-12">
+                <!-- Таблица start -->
+                <caption>
+                  <h2>Список мероприятий</h2>
+                </caption>
+                <!-- <table
+                  id="myTable"
+                  class="table table-hover table-bordered table-responsive table-sm"
+                >
+                  <thead>
+                    <tr>
+                      <th scope="col">№</th>
+                      <th scope="col">Дата</th>
+                      <th scope="col">Место</th>
+                      <th scope="col">Тип мероприятия</th>
+                      <th scope="col">Название</th>
+                      <th scope="col">Цена билета</th>
+                      <th scope="col">Файл</th>
+                    </tr>
+                  </thead>
+                  <tbody id="allEventsListTable"></tbody>
+                </table> -->
+
+                <table
+                  id="myTable2"
+                  class="table table-hover table-bordered table-responsive table-sm"
+                >
+                  <thead>
+                    <tr>
+                      <th scope="col">№</th>
+                      <th scope="col">Дата</th>
+                      <th scope="col">Место</th>
+                      <th scope="col">Тип мероприятия</th>
+                      <th scope="col">Название</th>
+                      <th scope="col">Цена билета</th>
+                      <th scope="col">Файл</th>
+                    </tr>
+                  </thead>
+                  <tbody id="eventsListTable"></tbody>
+                </table>
+                <!-- Таблица end -->
+
+                <span class="ml-5 edit-button btn btn-danger"
+                  >Редактировать</span
+                >
+                <!-- сами придумываем атрибут data-item="name", js воспринимает атрибут data как свойство объекта -->
+                <span
+                  class="ml-5 save-button btn btn-success"
+                  hidden
+                  data-item="name"
+                  >Сохранить</span
+                >
+                <span class="ml-2 cancel-button btn btn-info" hidden
+                  >Отменить</span
+                >
+
+                <!-- <button onclick="addRow()">Добавить строку</button>
+              <button onclick="saveRow()">Сохранить</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script type="text/javascript" src="../libs/base64.js"></script> -->
+    <script>
+      // $(document).ready(function () {
+      //   $("#nav-link-month").click(function () {
+      //     let id = $("a").prop("id");
+      //     alert(id);
+      //   });
+      // });
+
+      const toBase64 = (file) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = (error) => reject(error);
+        });
+      // function getBase64(file) {
+      //   return new Promise((resolve, reject) => {
+      //     const reader = new FileReader();
+      //     reader.readAsDataURL(file);
+      //     reader.onload = () => resolve(reader.result);
+      //     reader.onerror = (error) => reject(error);
+      //   });
+      // }
+      async function sendForm(form) {
+        info.innerText = "";
+        let formData = new FormData(form);
+
+        const file = document.querySelector("#file").files[0];
+        // console.log(await toBase64(file));
+        if (file !== undefined) {
+          formData.append("file", await toBase64(file));
+        }
+
+        let response = await fetch("addEvent", {
+          method: "POST",
+          body: formData,
+        });
+
+        let res = await response.json();
+
+        if (res.result == "success") {
+          $("#myModal").modal("show");
+          setTimeout(() => {
+            location.href = "/";
+          }, 3000);
+        } else if ((res.result = "exist")) {
+          info.innerText =
+            "Событие с такой датой и местом проведения уже существует";
+        } else {
+          alert("Неизвестная ошибка...");
+        }
+        //console.log(await response.json());
+      }
+
+      let edit_button = document.querySelector(".edit-button");
+      let save_button = document.querySelector(".save-button");
+      let cancel_button = document.querySelector(".cancel-button");
+
+      // let add_year_button = document.querySelector(".add_year_button");
+
+      // function addYear(id) {
+      //   let nav_link = document
+      //     .querySelector("nav-pills")
+      //     .getElementsByTagName("tbody")[0];
+      //   let row = document.createElement("tr");
+      //   let td1 = document.createElement("td");
+      // }
+      async function getEvents(month, year) {
+        let formData = new FormData();
+        formData.append("month", month);
+        formData.append("year", year);
+        let response = await fetch("/getEvents", {
+          method: "POST",
+          body: formData,
+        });
+
+        //получаем ответ в формате json
+        return await response.json();
+      }
+
+      let month = document.querySelectorAll(".nav-link-month");
+      for (let i = 0; i < month.length; i++) {
+        // let inputValue = edit_text[i].innerText;
+
+        month[i].addEventListener("click", () => {
+          eventsListTable.innerHTML = "";
+          $("#v-pills-month").show();
+          let year = $(".nav-link.active").attr("id");
+          console.log(month[i].id);
+          console.log(year);
+          getEvents(month[i].id, year).then((events) => {
+            console.log(events);
+            if (events !== null) {
+              for (let i = 0; i < events.length; i++) {
+                eventsListTable.insertAdjacentHTML(
+                  "beforeend",
+                  `<tr>
+                    <th scope="row"> ${i + 1}</th>
+                    <td class="edit"> ${events[i].date}</td>
+                    <td class="edit"> ${events[i].place}</td>
+                    <td class="edit"> ${events[i].type}</td>
+                    <td class="edit"> ${events[i].name}</td>
+                    <td class="edit"> ${events[i].price}</td>
+                    <td class="edit"> <object type="application/pdf" data="${
+                      events[i].file
+                    }">file</object></td>
+                  </tr>`
+                );
+              }
+            }
+          });
+        });
+      }
+
+      let edit_text = document.querySelectorAll(".edit");
+      for (let i = 0; i < edit_text.length; i++) {
+        let inputValue = edit_text[i].innerText;
+
+        edit_button.addEventListener("click", () => {
+          edit_text[
+            i
+          ].innerHTML = `<input type= "text" value= "${inputValue}">`;
+
+          save_button.hidden = false;
+          cancel_button.hidden = false;
+          edit_button.hidden = true;
+        });
+
+        cancel_button.addEventListener("click", () => {
+          edit_text[i].innerText = inputValue;
+          save_button.hidden = true;
+          cancel_button.hidden = true;
+          edit_button.hidden = false;
+        });
+
+        save_button.addEventListener("click", async () => {
+          let newInputValue = edit_text[i].firstChild.value;
+          edit_text[i].innerText = newInputValue;
+
+          save_button.hidden = true;
+          cancel_button.hidden = true;
+          edit_button.hidden = false;
+
+          // let itemName = save_buttons[i].dataset.item;
+          // let formData = new FormData();
+          // //добавляем ключи, которые ловим в обработчике lk_obr.php
+          // formData.append("item", itemName);
+          // formData.append("value", newInputValue);
+
+          // let response = await fetch("php/classes/User.php", {
+          //   method: 'POST',
+          //   body: formData
+          // });
+        });
+      }
+
+      let pathname = location.pathname.split("/")[2];
+      let navLinks = document.querySelectorAll(".nav-link");
+      for (let i = 0; i < navLinks.length; i++) {
+        navLinks[i].addEventListener("click", () => {
+          // $("#v-pills-month").hide();
+          $("#v-pills-year").show();
+        });
+      }
+
+      let navLinksMonth = document.querySelectorAll(".nav-link-month");
+      for (let i = 0; i < navLinksMonth.length; i++) {
+        navLinksMonth[i].addEventListener("click", () => {
+          // $("#v-pills-month").hide();
+          $("#v-pills-year").hide();
+        });
+      }
+
+      // let event;
+
+      // async function getEvents() {
+      //   let formData = new FormData();
+      //   formData.append("month", 9);
+
+      //   let response = await fetch("/getEvents", {
+      //     method: "POST",
+      //     body: formData,
+      //   });
+
+      //   //получаем ответ в формате json
+      //   return await response.json();
+      // }
+      // ******************
+      async function getAllEvents() {
+        // alert("getAllEvents");
+        //первый параметр - куда посылаем запрос
+        let response = await fetch("/getAllEvents");
+        //получаем ответ в формате json
+        return await response.json();
+      }
+
+      // ************************8
+
+      // addEventListener("popstate", (e) => {
+      //   let path = location.pathname.split("/")[2];
+
+      //   if (path == "profile") {
+      //     $("#profileTab").tab("show");
+      //   } else if (path == "messages") {
+      //     $("#messagesTab").tab("show");
+      //   } else if (path == "settings") {
+      //     $("#settingsTab").tab("show");
+      //   } else {
+      //     // location.href = location.protocol + "//" + location.host;
+      //   }
+      // });
+
+      // if (pathname == "profile") {
+      //   getUser().then((user) => {
+      //     console.log(user);
+      //     userName.innerText = `${user.name} ${user.lastname}`;
+      //     userMail.innerText = `${user.email}`;
+      //     userId.innerText = `${user.id}`;
+
+      //   })
+      //   // //результат запроса сохраняем в переменную user
+      //   // user = getUser();
+      //   // //метод then позволяет дождаться объект promise (отложенные данные)
+      //   // user.then((user) => {
+      //   //   console.log(user);
+      //   // });
+      //   // console.log(user);
+      //   $("#v-pills-profile").tab("show");
+      // } else if (pathname == "messages") {
+
+      // *********************
+      getAllEvents().then((events) => {
+        console.log(events);
+
+        for (let i = 0; i < events.length; i++) {
+          //1й способ
+          // allEventsListTable.innerHTML += `
+          // <tr>
+          //     <th scope="row"> ${i + 1}</th>
+          //     <td class="edit"> ${events[i].date}</td>
+          //     <td class="edit"> ${events[i].place}</td>
+          //     <td class="edit"> ${events[i].type}</td>
+          //     <td class="edit"> ${events[i].name}</td>
+          //     <td class="edit"> ${events[i].price}</td>
+          //     <td class="edit"> ${events[i].file}</td>
+          //   </tr>
+          // `
+
+          // 2й способ с помощью метода insertAdjacentHTML
+          allEventsListTable.insertAdjacentHTML(
+            "beforeend",
+            `<tr>
+              <th scope="row"> ${i + 1}</th>
+              <td class="edit"> ${events[i].date}</td>
+              <td class="edit"> ${events[i].place}</td>
+              <td class="edit"> ${events[i].type}</td>
+              <td class="edit"> ${events[i].name}</td>
+              <td class="edit"> ${events[i].price}</td>
+              <td class="edit"> ${events[i].file}</td>
+            </tr>`
+          );
+        }
+      });
+
+      // ****************************
+
+      // getEvents().then((events) => {
+      //   console.log(events);
+
+      //   for (let i = 0; i < events.length; i++) {
+      //     eventsListTable.insertAdjacentHTML(
+      //       "beforeend",
+      //       `<tr>
+      //         <th scope="row"> ${i + 1}</th>
+      //         <td class="edit"> ${events[i].date}</td>
+      //         <td class="edit"> ${events[i].place}</td>
+      //         <td class="edit"> ${events[i].type}</td>
+      //         <td class="edit"> ${events[i].name}</td>
+      //         <td class="edit"> ${events[i].price}</td>
+      //         <td class="edit"> ${events[i].file}</td>
+      //       </tr>`
+      //     );
+      //   }
+      // });
+      // $("#v-pills-messages").tab("show");
+      // } else if (pathname == "settings") {
+      //   $("#v-pills-settings").tab("show");
+      // } else {
+      //   location.href = location.protocol + "//" + location.host;
+      // }
+
+      // document.getElementById(pathname + "Tab").classList.add("active");
+
+      // for (let i = 0; i < navLinks.length; i++) {
+      //   navLinks[i].addEventListener("click", () => {
+      //     let page = navLinks[i]
+      //       .getAttribute("aria-controls")
+      //       .split("v-pills-")[1];
+      //     console.log(page);
+      //     history.pushState("", "", page);
+      //   });
+      // }
+    </script>
+
+    
+  </body>
+</html>

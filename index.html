@@ -33,7 +33,7 @@
         font-weight: bold;
         height: 8rem;
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         padding-top: 3rem;
       }
       .button-save {
@@ -206,7 +206,7 @@
             </div>
           </form>
           <!-- Form end -->
-          <div class="p-0 col-md-12">
+          <!-- <div class="p-0 col-md-12">
             <button
               onclick=""
               type="submit"
@@ -215,7 +215,7 @@
             >
               Показать полный список
             </button>
-          </div>
+          </div> -->
 
           <!-- Модальное окно start-->
           <div
@@ -717,13 +717,13 @@
       //   return await response.json();
       // }
       // ******************
-      async function getAllEvents() {
-        // alert("getAllEvents");
-        //первый параметр - куда посылаем запрос
-        let response = await fetch("/getAllEvents");
-        //получаем ответ в формате json
-        return await response.json();
-      }
+      // async function getAllEvents() {
+      //   // alert("getAllEvents");
+      //   //первый параметр - куда посылаем запрос
+      //   let response = await fetch("/getAllEvents");
+      //   //получаем ответ в формате json
+      //   return await response.json();
+      // }
 
       // ************************8
 
@@ -760,38 +760,38 @@
       // } else if (pathname == "messages") {
 
       // *********************
-      getAllEvents().then((events) => {
-        console.log(events);
+      // getAllEvents().then((events) => {
+      //   console.log(events);
 
-        for (let i = 0; i < events.length; i++) {
-          //1й способ
-          // allEventsListTable.innerHTML += `
-          // <tr>
-          //     <th scope="row"> ${i + 1}</th>
-          //     <td class="edit"> ${events[i].date}</td>
-          //     <td class="edit"> ${events[i].place}</td>
-          //     <td class="edit"> ${events[i].type}</td>
-          //     <td class="edit"> ${events[i].name}</td>
-          //     <td class="edit"> ${events[i].price}</td>
-          //     <td class="edit"> ${events[i].file}</td>
-          //   </tr>
-          // `
+      //   for (let i = 0; i < events.length; i++) {
+      //     //1й способ
+      //     // allEventsListTable.innerHTML += `
+      //     // <tr>
+      //     //     <th scope="row"> ${i + 1}</th>
+      //     //     <td class="edit"> ${events[i].date}</td>
+      //     //     <td class="edit"> ${events[i].place}</td>
+      //     //     <td class="edit"> ${events[i].type}</td>
+      //     //     <td class="edit"> ${events[i].name}</td>
+      //     //     <td class="edit"> ${events[i].price}</td>
+      //     //     <td class="edit"> ${events[i].file}</td>
+      //     //   </tr>
+      //     // `
 
-          // 2й способ с помощью метода insertAdjacentHTML
-          allEventsListTable.insertAdjacentHTML(
-            "beforeend",
-            `<tr>
-              <th scope="row"> ${i + 1}</th>
-              <td class="edit"> ${events[i].date}</td>
-              <td class="edit"> ${events[i].place}</td>
-              <td class="edit"> ${events[i].type}</td>
-              <td class="edit"> ${events[i].name}</td>
-              <td class="edit"> ${events[i].price}</td>
-              <td class="edit"> ${events[i].file}</td>
-            </tr>`
-          );
-        }
-      });
+      //     // 2й способ с помощью метода insertAdjacentHTML
+      //     allEventsListTable.insertAdjacentHTML(
+      //       "beforeend",
+      //       `<tr>
+      //         <th scope="row"> ${i + 1}</th>
+      //         <td class="edit"> ${events[i].date}</td>
+      //         <td class="edit"> ${events[i].place}</td>
+      //         <td class="edit"> ${events[i].type}</td>
+      //         <td class="edit"> ${events[i].name}</td>
+      //         <td class="edit"> ${events[i].price}</td>
+      //         <td class="edit"> ${events[i].file}</td>
+      //       </tr>`
+      //     );
+      //   }
+      // });
 
       // ****************************
 
